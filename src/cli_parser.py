@@ -20,6 +20,14 @@ if args.directory:
     os.chdir(args.directory)
     print(os.getcwd())
 
-# if interval given
+## if interval given
 if args.interval:
+    ## get the interval duration
+    _interval = args.interval
+
+## if file config given
+if args.config:
+    ## load YAML config file
+
+
 
