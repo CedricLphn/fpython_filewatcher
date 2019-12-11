@@ -1,3 +1,5 @@
+from src.load_yaml import load_config
+
 import argparse, os
 """Parser of arguments from cli
 
@@ -28,6 +30,7 @@ if args.interval:
 ## if file config given
 if args.config:
     ## load YAML config file
+    config_yaml = load_config('')
 
 
 
