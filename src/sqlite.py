@@ -34,3 +34,11 @@ def update_signature(filename, signature):
         return True
     except:
         return False
+
+def remove_filename(filename):
+    try:
+        cursor.execute("DELETE FROM directory WHERE filename = ?", [filename])
+        sql.commit()
+        return True
+    except:
+        return False

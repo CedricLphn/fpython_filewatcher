@@ -17,11 +17,14 @@ def main():
     while True:
         files = [f for f in listdir(__EXAMPLE_FOLDER__) if isfile(join(__EXAMPLE_FOLDER__, f))]
         db_files = db.select_filename()
+        print(">> FILES: ", files)
+        print(">> SQL: ", db_files)
         for file in files:
             # TO DO : PENSER A FAIRE LES FICHIERS SUPPRIME
-            if(db_files.index(file) >= 0):
-                # Delete all files existing in folder and database
-                del db_files[db_files.index(file)]
+            # Delete all files existing in folder and database
+            for db_file in db_files:
+                if(db_file == file):
+                    del db_files[db_files.index(file)]
 
             # File exist in db
             checksum = checksum_file(__EXAMPLE_FOLDER__ + file)
@@ -38,7 +41,11 @@ def main():
 
         # Detect file removed here
         for deleted in db_files:
-            print(">", deleted, "removed")
+            if(db.remove_filename(deleted)):
+                print(">", deleted, "removed")
+            else:
+                print("(!) Error remove filename in database")
+
         time.sleep(3.5) # in sec
     
 
