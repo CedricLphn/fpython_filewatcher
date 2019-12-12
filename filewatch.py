@@ -17,7 +17,7 @@ def main():
     _run = False
     _with_logs = False
     ## parse arguments
-    get_list = cli_parser()
+    get_list = cli_parser(_logger)
     print(get_list)
     if get_list is not None:
 

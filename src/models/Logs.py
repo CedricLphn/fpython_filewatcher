@@ -12,8 +12,15 @@ class Logs:
         """
         if case == 'set':
             # Gets or creates a logger
-            self.logger = logging.getLogger(filename)
-            self.logger.setLevel(logging.WARNING)
+            self.logger = logging.getLogger()
+            self.logger.setLevel(logging.DEBUG)
+
+            # create console handler and set level to info
+            handler = logging.StreamHandler()
+            handler.setLevel(logging.DEBUG)
+            formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
 
             file_handler = logging.FileHandler(filename)
             formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
