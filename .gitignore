@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 watcher.sqlite
-example/
+
+.idea
