@@ -1,4 +1,5 @@
 import argparse
+import time
 
 from src.models.load_yaml import load_config
 from src.models.handle_log_cases import handle_log_cases
@@ -34,6 +35,7 @@ def cli_parser():
         logged = True
         handle_log_cases(text="Logs processing...", case='info')
         params.append(args.logging)
+        follow(_logging)
         print("logging: ", params)
     else:
         print("warning: must be set on '-l true' to handle debugs, infos, warnings")
@@ -96,3 +98,14 @@ def check_params(params, logged):
 
         params = []
         return params
+
+## !!!!! NEED TO STREAM OR OPEN THE LOG AND READ INTO CONSOLE
+def follow(file):
+    while 1:
+        where = file.tell()
+        line = file.readline()
+        if not line:
+            time.sleep(1)
+            file.seek(where)
+        else:
+            print(line),  # already has newline
