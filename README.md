@@ -17,8 +17,8 @@ Placez-vous au niveau du répertoire de la racine de l'application "python_filew
 | Syntaxe        | Description  |
 | ------------- |:-------------:|
 | -i      | Interval in seconds |
-| -d      | Directory name      |
-| -l | Add logs      |
+| -d      | Watch directory      |
+| -l | Save logs in a specific file      |
 | -c | Config file in YAML      |
 
 
@@ -27,9 +27,9 @@ Placez-vous au niveau du répertoire de la racine de l'application "python_filew
 
 ## Versions
 
-**Dernière version stable :** 1.0
+**Dernière version stable :** 1.0.8
 
-**Dernière version :** 1.0
+**Dernière version :** 1.0.8
 
 ## Board
 
