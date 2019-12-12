@@ -3,16 +3,17 @@ from src.checksum import *
 from os import listdir
 from os.path import isfile, join
 import time
+
+from src.models.Logs import Logs
 from src.models.cli_parser import cli_parser
-import logging
-import src.models.handle_log_cases as console
+
 
 def main():
     """Main module
 
     
     """
-    
+    _logger = Logs()
     _run = False
     _with_logs = False
     ## parse arguments
@@ -29,7 +30,7 @@ def main():
     if _run is True:
         ## continue
         db.init()
-        console.handle_log_cases(case="info", text="Daemon ready")
+        _logger.handle_log_cases(case="info", text="Daemon ready")
         directory = get_list[1] if _with_logs else get_list[0]
         interval = get_list[2] if _with_logs else get_list[1]
 
@@ -48,12 +49,12 @@ def main():
                 if(db.count(file) > 0):
                     if(db.select(file)[2] != checksum):
                         text = ''.join(["File ", file, " changed"])
-                        console.handle_log_cases(case="info", text=text)
+                        _logger.handle_log_cases(case="info", text=text)
                         if(db.update_signature(file, checksum) == False):
-                            console.handle_log_cases(case="warning", text="Error while updating database")
+                            _logger.handle_log_cases(case="warning", text="Error while updating database")
                 else:
                     text = ''.join(["New file detected : ", file])
-                    console.handle_log_cases(case="info", text=text)
+                    _logger.handle_log_cases(case="info", text=text)
                     db.write(file, directory, checksum)
                     
 
@@ -61,9 +62,9 @@ def main():
             for deleted in db_files:
                 if(db.remove_filename(deleted)):
                     text = ''.join(["File ", deleted, " removed"])
-                    console.handle_log_cases(case="info", text=text)
+                    _logger.handle_log_cases(case="info", text=text)
                 else:
-                    console.handle_log_cases(case="warning", text="Error remove filename in database")
+                    _logger.handle_log_cases(case="warning", text="Error remove filename in database")
 
             time.sleep(interval) # in sec
 
