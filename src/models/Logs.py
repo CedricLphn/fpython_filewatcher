@@ -5,7 +5,7 @@ class Logs:
     def __init__(self, ):
         self.logger = None
 
-    def handle_log_cases(case, text="", filename='/logs/fw.log', self=None):
+    def handle_log_cases(self=None, case="set", text="", filename='/logs/fw.log', ):
         """Custom switch for returning the right method from logging lib
         :args: case, text(optional), filename(optional)
         :return: logging method
