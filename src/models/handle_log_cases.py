@@ -8,7 +8,7 @@ def handle_log_cases(case, text="", filename='/logs/fw.log'):
     """
 
     if case == 'set':
-        return logging.basicConfig(filename=filename, level=logging.DEBUG, format='%(asctime)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+        return logging.basicConfig(filename=filename, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
     if case == 'debug':
         return logging.debug(text)

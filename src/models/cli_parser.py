@@ -35,7 +35,7 @@ def cli_parser():
         logged = True
         handle_log_cases(text="Logs processing...", case='info')
         params.append(args.logging)
-        follow(_logging)
+        #follow(_logging)
         print("logging: ", params)
     else:
         print("warning: must be set on '-l true' to handle debugs, infos, warnings")
@@ -52,7 +52,6 @@ def cli_parser():
         params.append(_interval)
         print("config YAML: ", params)
         return check_params(params, logged)
-        exit()
 
     ## if directory given
     if args.directory:
