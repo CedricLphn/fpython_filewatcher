@@ -5,15 +5,22 @@ class Logs:
     def __init__(self, ):
         self.logger = None
 
-    def handle_log_cases(case, text="", filename='/logs/fw.log', self=None):
+    def handle_log_cases(self=None, case="set", text="", filename='/logs/fw.log', ):
         """Custom switch for returning the right method from logging lib
         :args: case, text(optional), filename(optional)
         :return: logging method
         """
         if case == 'set':
             # Gets or creates a logger
-            self.logger = logging.getLogger(filename)
-            self.logger.setLevel(logging.WARNING)
+            self.logger = logging.getLogger()
+            self.logger.setLevel(logging.DEBUG)
+
+            # create console handler and set level to info
+            handler = logging.StreamHandler()
+            handler.setLevel(logging.DEBUG)
+            formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
 
             file_handler = logging.FileHandler(filename)
             formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(message)s')
