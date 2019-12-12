@@ -50,6 +50,7 @@ def cli_parser():
         params.append(_interval)
         print("config YAML: ", params)
         return check_params(params, logged)
+        exit()
 
     ## if directory given
     if args.directory:
@@ -79,13 +80,12 @@ def cli_parser():
 
 
 def check_params(params, logged):
-    if len(params) > 0:
+    if len(params) > 1:
 
         ## if true you return params
         if logged is True:
             handle_log_cases(text="Loading the params...", case='info')
 
-        print(params)
         return params
 
     else:
